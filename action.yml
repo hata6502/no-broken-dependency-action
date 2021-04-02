@@ -1,3 +1,8 @@
+name: No broken dependency
+description: Action for detecting broken package-lock.json.
+branding:
+  icon: alert-circle
+  color: red
 inputs:
   default-branch:
     default: main
