@@ -9,8 +9,13 @@
 </p>
 
 > Action for detecting broken package-lock.json.
+> When packages were updated unexpedctedly or using the incorrect version of npm v6 / v7, this Action fails.
 
 ### ✨ [Demo](https://github.com/hata6502/no-broken-dependency-action-test/pulls)
+
+## Usage
+
+Please see an [example](https://github.com/hata6502/no-broken-dependency-action-test/blob/master/.github/workflows/test.yml).
 
 ## Author
 
