@@ -9,11 +9,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: git fetch origin ${{inputs.default-branch}}
-      shell: bash
-    - run: git restore -s origin/${{inputs.default-branch}} package-lock.json
-      shell: bash
-    - run: npm install --package-lock-only
-      shell: bash
-    - run: git diff --exit-code package-lock.json
+    - run: |
+        git fetch origin ${{inputs.default-branch}}
+        git restore -s origin/${{inputs.default-branch}} package-lock.json
+
+        npm install --package-lock-only
+
+        git diff --exit-code package-lock.json
       shell: bash
