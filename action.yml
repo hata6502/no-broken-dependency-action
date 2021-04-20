@@ -10,8 +10,13 @@ runs:
   using: composite
   steps:
     - run: |
-        git fetch origin ${{inputs.default-branch}}
-        git restore -s origin/${{inputs.default-branch}} package-lock.json
+        git fetch --unshallow origin "${{inputs.default-branch}}"
+
+        if [ "$(git diff 'origin/${{inputs.default-branch}}'... --name-only)" = "package-lock.json" ]; then
+          exit
+        fi;
+
+        git restore -s "origin/${{inputs.default-branch}}" package-lock.json
 
         npm install --package-lock-only
 
