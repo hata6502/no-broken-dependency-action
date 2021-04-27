@@ -16,7 +16,7 @@ runs:
           exit
         fi;
 
-        git restore -s "origin/${{inputs.default-branch}}" package-lock.json
+        git restore -s "origin/${{inputs.default-branch}}..." package-lock.json
 
         npm install --package-lock-only
 
