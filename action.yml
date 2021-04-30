@@ -11,12 +11,13 @@ runs:
   steps:
     - run: |
         git fetch --depth=10000 origin "${{github.base_ref}}"
+        git fetch --depth=10000 origin "${{github.head_ref}}"
 
-        if [ "$(git diff 'origin/${{github.base_ref}}...' --name-only)" = "${{inputs.directory}}package-lock.json" ]; then
+        if [ "$(git diff 'origin/${{github.base_ref}}...origin/${{github.head_ref}}' --name-only)" = "${{inputs.directory}}package-lock.json" ]; then
           exit
         fi;
 
-        git restore -s "origin/${{github.base_ref}}..." "${{inputs.directory}}package-lock.json"
+        git restore -s "origin/${{github.base_ref}}...origin/${{github.head_ref}}" "${{inputs.directory}}package-lock.json"
 
         npm install --package-lock-only
 
