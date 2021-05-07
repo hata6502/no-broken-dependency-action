@@ -19,7 +19,7 @@ runs:
 
         git restore -s "origin/${{github.base_ref}}...origin/${{github.head_ref}}" "${{inputs.directory}}package-lock.json"
 
-        npm install --package-lock-only
+        npm install --force --package-lock-only
 
         git diff --exit-code "${{inputs.directory}}package-lock.json"
       shell: bash
